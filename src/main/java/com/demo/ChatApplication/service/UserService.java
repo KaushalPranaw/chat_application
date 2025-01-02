@@ -80,7 +80,9 @@ public class UserService {
         }
 
         List<Friend> friends = user.getFriends();
-        List<User> friendsByUser = friends.stream().map(friend -> friend.getFriend()).toList();
+        List<User> friendsByUser = friends.stream()
+                .filter(friend -> "accepted".equals(friend.getStatus()))
+                .map(friend -> friend.getFriend()).toList();
         return friendsByUser;
     }
 
