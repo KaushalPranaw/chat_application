@@ -57,6 +57,7 @@ public class UserService {
         Friend friend = Friend.builder()
                 .friend(friendUser)
                 .user(user)
+                //.status("pending")
                 .build();
 
         // Save the friend relationship and check if it was successful
