@@ -16,9 +16,13 @@ public class ChatController {
 
     @MessageMapping("/sendMessage") // Maps to /app/sendMessage
     @SendTo("/topic/messages") // Sends to /topic/messages
-    public ChatMessage sendMessage(ChatMessage message) {
-
-        chatRepository.save(new Chat(message.getSender(), message.getReceiver(), message.getContent(), message.getTimestamp()));
-        return message;
+    public String sendMessage(ChatMessage message) {
+        System.out.println(message);
+        Chat chat = chatRepository.save(new Chat(message.getSender(), message.getReceiver(), message.getContent(), message.getTimestamp()));
+        if (chat != null) {
+            System.out.println(chat);
+            return "Chat sent";
+        }
+        return "Chat not sent";
     }
 }
